@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Product Form</title>
+<style>
+    /* Basic CSS styles for form layout */
+    form {
+        width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .variant {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<form action="http://localhost:3000/addvariant" method="post" enctype="multipart/form-data">
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model" required>
+
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="user['_id']" required>
+
+    <label for="shopNumber">Shop Number:</label>
+    <input type="number" id="shopNumber" name="user.shopNumber" required>
+
+    <label for="shopName">Shop Name:</label>
+    <input type="text" id="shopName" name="user[shopName]" required>
+
+    <div id="variants">
+        <div class="variant">
+            <label for="variantImages1">Variant Images:</label>
+            <input type="file" id="variantImages1" name="file"  multiple required>
+            <label for="variantColor1">Variant Color:</label>
+            <input type="text" id="variantColor1" name="variants.color" required>
+            <label for="variantSKU1">Variant SKU:</label>
+            <input type="text" id="variantSKU1" name="variants.SKU" required>
+            <label for="variantPrice1">Variant Price:</label>
+            <input type="number" id="variantPrice1" name="variants.price" required>
+            <label for="variantQuantity1">Variant Quantity:</label>
+            <input type="number" id="variantQuantity1" name="variants.quantity" required>
+        </div>
+    </div>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+</body>
+</html>

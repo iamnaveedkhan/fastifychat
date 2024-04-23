@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Form</title>
+  <style>
+    /* Add your CSS styles here */
+  </style>
+</head>
+<body>
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Enter keywords...">
+  </form>
+  
+  <div id="suggestions"></div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsDiv = document.getElementById('suggestions');
+    let uniqueSuggestions = new Set();
+
+    searchInput.addEventListener('input', async () => {
+      const searchTerm = searchInput.value.trim();
+      if (searchTerm.length > 2) {
+        const url = `http://192.168.1.231:3000/search/${searchTerm}`;
+        try {
+          const response = await fetch(url);
+          if (response.ok) {
+            const data = await response.json();
+            updateSuggestions(data);
+          } else {
+            console.error('Error1:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error2:', error);
+        }
+      } else {
+        // Clear suggestions if search term length is less than 3
+        suggestionsDiv.innerHTML = '';
+        uniqueSuggestions.clear();
+      }
+    });
+
+    function updateSuggestions(suggestions) {
+      suggestionsDiv.innerHTML = '';
+      suggestions.forEach((suggestion) => {
+        const suggestionText = suggestion.product.productName + ' - ' + suggestion.product.type;
+        if (!uniqueSuggestions.has(suggestionText)) {
+          const suggestionItem = document.createElement('div');
+          suggestionItem.textContent = suggestionText;
+          suggestionsDiv.appendChild(suggestionItem);
+          uniqueSuggestions.add(suggestionText);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

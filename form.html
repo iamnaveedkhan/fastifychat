@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Model Form</title>
+<style>
+    /* Basic CSS styles for form layout */
+    form {
+        width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .image-input-container {
+        margin-bottom: 10px;
+    }
+    .variant {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<form action="http://localhost:3000/addmodel" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" required>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="properties.category" required>
+
+    <label for="subcategory">Subcategory:</label>
+    <input type="text" id="subcategory" name="properties.subcategory" required>
+
+    <label for="brand">Brand:</label>
+    <input type="text" id="brand" name="properties.brand" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="properties.description" rows="4"></textarea>
+
+    <label for="specification">Specification:</label>
+    <textarea id="specification" name="specification" rows="4"></textarea>
+
+    <label for="images1">Image:</label>
+    <input type="file" id="images1" name="photo" accept="image/*" >
+
+    <!-- <label for="variants">Variants:</label>
+    <div id="variants">
+        <div class="variant">
+            <label for="color1">Color:</label>
+            <input type="text" id="color1" name="variants[0].color">
+            
+            <label for="sku1">SKU:</label>
+            <input type="text" id="sku1" name="variants[0].sku">
+            
+            <label for="price1">Price:</label>
+            <input type="number" id="price1" name="variants[0].price">
+            
+            <label for="quantity1">Quantity:</label>
+            <input type="number" id="quantity1" name="variants[0].quantity">
+            
+            <div class="image-input-container">
+                <label for="images1">Images:</label>
+                <input type="file" id="images1" name="variants[0].images[]" accept="image/*" multiple>
+                <button class="add-image">Add Image</button>
+            </div>
+        </div>
+    </div>
+    <button id="addVariant">Add Variant</button> -->
+
+    <input type="submit" value="Submit">
+</form>
+
+<!-- <script>
+  
+    let variantIndex = 1;
+    document.getElementById('addVariant').addEventListener('click', function() {
+        variantIndex++;
+        const variantDiv = document.createElement('div');
+        variantDiv.classList.add('variant');
+        variantDiv.innerHTML = `
+            <label for="color${variantIndex}">Color:</label>
+            <input type="text" id="color${variantIndex}" name="variants[${variantIndex - 1}].color">
+            
+            <label for="sku${variantIndex}">SKU:</label>
+            <input type="text" id="sku${variantIndex}" name="variants[${variantIndex - 1}].sku">
+            
+            <label for="price${variantIndex}">Price:</label>
+            <input type="number" id="price${variantIndex}" name="variants[${variantIndex - 1}].price">
+            
+            <label for="quantity${variantIndex}">Quantity:</label>
+            <input type="number" id="quantity${variantIndex}" name="variants[${variantIndex - 1}].quantity">
+            
+            <div class="image-input-container">
+                <label for="images${variantIndex}">Images:</label>
+                <input type="file" id="images${variantIndex}" name="variants[${variantIndex - 1}].images[]" accept="image/*" multiple>
+                <button class="add-image">Add Image</button>
+            </div>
+        `;
+        document.getElementById('variants').appendChild(variantDiv);
+    });
+
+   
+    document.getElementById('variants').addEventListener('click', function(event) {
+        if (event.target.classList.contains('add-image')) {
+            const imageInputContainer = event.target.parentNode;
+            const imageInput = document.createElement('input');
+            imageInput.setAttribute('type', 'file');
+            imageInput.setAttribute('name', imageInputContainer.querySelector('input').getAttribute('name'));
+            imageInput.setAttribute('accept', 'image/*');
+            imageInput.setAttribute('multiple', '');
+            imageInputContainer.appendChild(imageInput);
+        }
+    });
+</script> -->
+
+</body>
+</html>

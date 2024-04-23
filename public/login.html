@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" id="main">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: auto;
+      margin-top: 100px;
+      padding: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="login-container">
+      <h2 class="text-center mb-4">Login</h2>
+      <form method="post">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" name="uname" id="username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" name="upass" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Include Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- <script>
+    async function handleLogin(event) {
+      event.preventDefault(); // Prevent the default form submission
+  
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const main = document.getElementById('main')
+  
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ uname: username, upass: password })
+        });
+  
+        // Check if the response is successful (status code 2xx)
+        if (response.ok) {
+          // Assuming the server responds with JSON data
+          // const data = await response.json();
+          // Do something with the response data, e.g., redirect to the logged-in page
+          window.location.href = '/logedin';
+          // main.value = response.body
+        } else {
+          // Handle unsuccessful login
+          const errorData = await response.json();
+          console.log(errorData.error); // Log the error message
+        }
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+  </script> -->
+
+</body>
+</html>

@@ -60,6 +60,13 @@ io.on('connection', (socket) => {
   });
 });
 
+// WebSocket Route
+fastify.get('/socket.io/', async (request, reply) => {
+  reply.send({
+    statusCode: 200
+  });
+});
+
 // Run the server
 const start = async () => {
   try {

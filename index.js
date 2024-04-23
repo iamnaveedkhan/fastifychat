@@ -52,18 +52,11 @@ io.on('connection', (socket) => {
     try {
       const chat = new chat(msg);
       await chat.save();
-      const populatedChat = await chat.populate('sender').populate('receiver').execPopulate();
+      // const populatedChat = await chat.populate('sender').populate('receiver').execPopulate();
       io.emit('chat message', populatedChat);
     } catch (err) {
       console.error(err);
     }
-  });
-});
-
-// WebSocket Route
-fastify.get('/socket.io/', async (request, reply) => {
-  reply.send({
-    statusCode: 200
   });
 });
 

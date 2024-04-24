@@ -1,8 +1,8 @@
-// server.js
 const fastify = require('fastify')({ logger: true });
 const mongoose = require('mongoose');
 const routes = require('./routes/index.js');
 const { User } = require("./models/allModels");
+const { Chat } = require("./models/ChatModel");
 const socketio = require('socket.io');
 const { Server } = require('http');
 
@@ -50,9 +50,9 @@ io.on('connection', (socket) => {
   socket.on('chat message', async (msg) => {
     console.log('message: ' + msg);
     try {
-      const chat = new chat(msg);
+      const chat = new Chat(msg);
       await chat.save();
-      // const populatedChat = await chat.populate('sender').populate('receiver').execPopulate();
+      const populatedChat = await chat.populate('sender').populate('receiver').execPopulate(); // Populate sender and receiver
       io.emit('chat message', populatedChat);
     } catch (err) {
       console.error(err);

@@ -1,5 +1,5 @@
 // routes/chatRoutes.js
-const Chat = require('../models/ChatModel');
+const {Chat} = require('../models/ChatModel');
 
 async function chatRoutes(fastify, options) {
   fastify.get('/', async (request, reply) => {

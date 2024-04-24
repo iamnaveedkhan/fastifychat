@@ -52,21 +52,37 @@ io.on('connection', (socket) => {
     try {
       const chat = new Chat(msg);
       await chat.save();
-      const populatedChat = await chat.populate('sender').populate('receiver').execPopulate(); // Populate sender and receiver
-      io.emit('chat message', populatedChat);
+      // const populatedChat = await chat.populate('sender').populate('receiver'); // Populate sender and receiver
+      io.emit('chat message', chat);
     } catch (err) {
       console.error(err);
     }
   });
+
+  // socket.on('fetch chat', async (msg) => {
+  //   console.log('fetch: ' + msg);
+  //   try {
+  //     const populatedChat = await Chat.find({
+  //       $and: [
+  //         { "sender": msg.sender },
+  //         { "receiver": msg.receiver }
+  //       ]
+  //     }).populate('sender').populate('receiver'); // Populate sender and receiver
+  //     // reply.send(populatedChat);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // });
+
 });
 
 // Run the server
 const start = async () => {
   try {
-    await fastify.listen(3000, '0.0.0.0');
-    fastify.log.info(`Server listening on ${fastify.server.address().port}`);
+    await httpServer.listen(3000, '0.0.0.0');
+    // fastify.log.info(`Server listening on ${fastify.server.address().port}`);
   } catch (err) {
-    fastify.log.error(err);
+    // fastify.log.error(err);
     process.exit(1);
   }
 };
